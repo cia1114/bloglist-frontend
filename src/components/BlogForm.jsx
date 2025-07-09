@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import blogService from '../services/blogs'
 
 const BlogForm = ({ createBlog }) => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url,setUrl] = useState('')
 
-  const onSubmit = async (event) => {
+  const create = (event) => {
     event.preventDefault()
+    
     createBlog({ title, author, url })
 
     setTitle('')
@@ -19,9 +19,9 @@ const BlogForm = ({ createBlog }) => {
   return (
     <div>
       <h2>create new</h2>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={create}>
         <div>
-                title:
+          title:
           <input
             type="text"
             value={title}
@@ -30,7 +30,7 @@ const BlogForm = ({ createBlog }) => {
           />
         </div>
         <div>
-                author:
+          author:
           <input
             type="text"
             value={author}
@@ -39,15 +39,15 @@ const BlogForm = ({ createBlog }) => {
           />
         </div>
         <div>
-                url:
+          url:
           <input
-            type="url"
+            type="text"
             value={url}
             name="Url"
             onChange={({ target }) => setUrl(target.value)}
           />
         </div>
-        <button type="submit">create</button>
+        <button type="submit" id="create-button">create</button>
       </form>
     </div>
   )
