@@ -36,13 +36,15 @@ const Blog = ({
       {blog.url}<br />
       {`${blog.likes}  `}
       <button onClick={incrementLike}>like</button><br />
-      {blog.user.name}<br />
-      <button onClick={remove}>Delete</button><br />
+      {`Add by: ${blog.user.name}`}<br />
+      { blog.user.username === JSON.parse(window.localStorage.getItem('loggedUser')).username && 
+        <button onClick={remove}>Delete</button>
+      }
     </div>
   )
 
   return (
-    <div style={blogStyle}>
+    <div style={blogStyle} data-testid='blog'>
       <div>
         {`${blog.title} ${blog.author} `}
         <button onClick={toggleVisibility}>{visible ? 'hide' : 'view' }</button>
