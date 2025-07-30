@@ -40,7 +40,8 @@ const App = () => {
     blogFormRef.current.toggleVisibility()
     try {
       const newBlog = await blogService.create({ title, author, url })
-      const newBlogs = blogs.concat(newBlog)
+      
+      const newBlogs = await blogService.getAll()
       setBlogs(newBlogs)
       createNotification(`a new blog ${newBlog.title} by ${newBlog.author} added`)
     }
@@ -138,7 +139,8 @@ const App = () => {
           key={blog.id}
           blog={blog}
           updateBlog={updateBlog}
-          deleteBlog={deleteBlog} />
+          deleteBlog={deleteBlog}
+        />
       )}
     </div>
   )
